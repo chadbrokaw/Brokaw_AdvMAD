@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+    <device id="retina3_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Locations-->
+        <scene sceneID="hNz-n2-bh7">
+            <objects>
+                <viewController id="9pv-A4-QxB" customClass="FirstViewController" customModule="locations" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="yyK-BP-8qf">
+                                <rect key="frame" x="0.0" y="88" width="320" height="304"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Location" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="KQZ-1w-vlD">
+                                        <rect key="frame" x="93.5" y="0.0" width="133" height="43"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0xI-Yd-u0T">
+                                        <rect key="frame" x="0.0" y="57" width="320" height="216"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="9pv-A4-QxB" id="yW7-IO-gth"/>
+                                            <outlet property="delegate" destination="9pv-A4-QxB" id="ieO-C1-fci"/>
+                                        </connections>
+                                    </pickerView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A5M-7J-77L">
+                                        <rect key="frame" x="132.5" y="287" width="55.5" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="yyK-BP-8qf" firstAttribute="centerY" secondItem="tsR-hK-woN" secondAttribute="centerY" id="0Iy-kj-wbJ"/>
+                            <constraint firstItem="yyK-BP-8qf" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="jx2-u0-48j"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Locations" image="location.circle.fill" catalog="system" id="acW-dT-cKf"/>
+                    <connections>
+                        <outlet property="locationLabel" destination="A5M-7J-77L" id="nX2-nk-PIU"/>
+                        <outlet property="locationPicker" destination="0xI-Yd-u0T" id="xn8-Zp-bJj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1131.8840579710145" y="-489.13043478260875"/>
+        </scene>
+        <!--Notes-->
+        <scene sceneID="B2q-5Y-iZL">
+            <objects>
+                <viewController id="LNi-KO-41J" customClass="RecordViewController" customModule="locations" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Hve-ZJ-oxp">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="56" translatesAutoresizingMaskIntoConstraints="NO" id="lbm-ZY-bd4">
+                                <rect key="frame" x="52.5" y="101" width="215.5" height="278.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Record some notes about it!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aLB-Sg-2hy">
+                                        <rect key="frame" x="0.0" y="0.0" width="215.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gdN-Ot-rwY">
+                                        <rect key="frame" x="92.5" y="76.5" width="30" height="30"/>
+                                        <state key="normal" title="Play"/>
+                                        <connections>
+                                            <action selector="playAction:" destination="LNi-KO-41J" eventType="touchUpInside" id="PrS-Kq-Rje"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9YE-Lf-rcP">
+                                        <rect key="frame" x="83" y="162.5" width="49" height="30"/>
+                                        <state key="normal" title="Record"/>
+                                        <connections>
+                                            <action selector="recordAction:" destination="LNi-KO-41J" eventType="touchUpInside" id="chY-8Z-NMK"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GUc-Ea-131">
+                                        <rect key="frame" x="91.5" y="248.5" width="32" height="30"/>
+                                        <state key="normal" title="Stop"/>
+                                        <connections>
+                                            <action selector="stopAction:" destination="LNi-KO-41J" eventType="touchUpInside" id="L5y-3c-vju"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="lbm-ZY-bd4" firstAttribute="centerX" secondItem="Hve-ZJ-oxp" secondAttribute="centerX" id="JB0-ZC-Plu"/>
+                            <constraint firstItem="lbm-ZY-bd4" firstAttribute="centerY" secondItem="Hve-ZJ-oxp" secondAttribute="centerY" id="h80-DW-qBT"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="9cx-N5-GIO"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Notes" image="recordingtape" catalog="system" id="LF0-d0-uFX"/>
+                    <connections>
+                        <outlet property="playOutlet" destination="gdN-Ot-rwY" id="BQj-Ao-NR3"/>
+                        <outlet property="recordOutlet" destination="9YE-Lf-rcP" id="5UA-ux-7Vx"/>
+                        <outlet property="stopOutlet" destination="GUc-Ea-131" id="xFz-xt-fBX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aCd-BL-0GP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="251" y="866"/>
+        </scene>
+        <!--Map it!-->
+        <scene sceneID="wg7-f3-ORb">
+            <objects>
+                <viewController id="8rJ-Kc-sve" customClass="SecondViewController" customModule="locations" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Urn-uB-5O2">
+                                <rect key="frame" x="136.5" y="225" width="47" height="30"/>
+                                <state key="normal" title="Map it!"/>
+                                <connections>
+                                    <action selector="mapAction:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="EaA-11-iyC"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Urn-uB-5O2" firstAttribute="centerY" secondItem="QS5-Rx-YEW" secondAttribute="centerY" id="FTl-4f-wjn"/>
+                            <constraint firstItem="Urn-uB-5O2" firstAttribute="centerX" secondItem="QS5-Rx-YEW" secondAttribute="centerX" id="IuP-Tv-QtO"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Map it!" image="link.circle.fill" catalog="system" id="cPa-gy-q4n"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1133" y="194"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="yl2-sM-qoP">
+            <objects>
+                <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
+                        <rect key="frame" x="0.0" y="975" width="768" height="49"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
+                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
+                        <segue destination="LNi-KO-41J" kind="relationship" relationship="viewControllers" id="ZQk-bW-ETJ"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="link.circle.fill" catalog="system" width="64" height="60"/>
+        <image name="location.circle.fill" catalog="system" width="64" height="60"/>
+        <image name="recordingtape" catalog="system" width="64" height="30"/>
+    </resources>
+</document>
