@@ -14,6 +14,9 @@ class DetailViewController: UITableViewController {
     var selectedPlanet = 0
     var moonList = [String]()
     
+    var searchController = UISearchController()
+    let resultsController = SearchResultsController()
+    
     @IBAction func unwindSegue(_ segue: UIStoryboardSegue) {
         if segue.identifier == "save" {
             let source = segue.source as! AddMoonViewController
@@ -22,6 +25,7 @@ class DetailViewController: UITableViewController {
                 planetsDataController.addMoon(planetIndex: selectedPlanet, newMoon: source.addedMoon, moonIndex: moonList.count)
                 
                 moonList.append(source.addedMoon)
+                resultsController.allMoons = moonList
                 
                 tableView.reloadData()
             }
@@ -44,6 +48,20 @@ class DetailViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         moonList = planetsDataController.getMoons(planetIndex: selectedPlanet)
+        
+        
+        resultsController.allMoons = moonList
+        
+        
+        searchController = UISearchController(searchResultsController: resultsController)
+        
+        searchController.searchBar.placeholder = "Filter"
+        
+        searchController.searchBar.sizeToFit()
+        
+        tableView.tableHeaderView = searchController.searchBar
+        
+        searchController.searchResultsUpdater = resultsController
     }
 
     // MARK: - Table view data source

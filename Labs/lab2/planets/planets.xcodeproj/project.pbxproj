@@ -17,6 +17,7 @@
 		40B7087223FC99D0003AD55E /* Planets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B7087123FC99D0003AD55E /* Planets.swift */; };
 		40B7087423FCCE39003AD55E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B7087323FCCE39003AD55E /* DetailViewController.swift */; };
 		40B7087623FCDA9E003AD55E /* AddMoonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B7087523FCDA9E003AD55E /* AddMoonViewController.swift */; };
+		40B7087823FCF7EF003AD55E /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B7087723FCF7EF003AD55E /* SearchViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		40B7087123FC99D0003AD55E /* Planets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planets.swift; sourceTree = "<group>"; };
 		40B7087323FCCE39003AD55E /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		40B7087523FCDA9E003AD55E /* AddMoonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMoonViewController.swift; sourceTree = "<group>"; };
+		40B7087723FCF7EF003AD55E /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,12 +68,13 @@
 			children = (
 				40B7086F23FC8F1D003AD55E /* planets.plist */,
 				40B7087123FC99D0003AD55E /* Planets.swift */,
-				40B7085B23FC8C55003AD55E /* AppDelegate.swift */,
 				40B7085D23FC8C55003AD55E /* SceneDelegate.swift */,
+				40B7085B23FC8C55003AD55E /* AppDelegate.swift */,
 				40B7085F23FC8C55003AD55E /* ViewController.swift */,
 				40B7086123FC8C55003AD55E /* Main.storyboard */,
 				40B7087523FCDA9E003AD55E /* AddMoonViewController.swift */,
 				40B7087323FCCE39003AD55E /* DetailViewController.swift */,
+				40B7087723FCF7EF003AD55E /* SearchViewController.swift */,
 				40B7086423FC8C5B003AD55E /* Assets.xcassets */,
 				40B7086623FC8C5B003AD55E /* LaunchScreen.storyboard */,
 				40B7086923FC8C5B003AD55E /* Info.plist */,
@@ -152,6 +155,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				40B7086023FC8C55003AD55E /* ViewController.swift in Sources */,
+				40B7087823FCF7EF003AD55E /* SearchViewController.swift in Sources */,
 				40B7087623FCDA9E003AD55E /* AddMoonViewController.swift in Sources */,
 				40B7085C23FC8C55003AD55E /* AppDelegate.swift in Sources */,
 				40B7087423FCCE39003AD55E /* DetailViewController.swift in Sources */,
