@@ -16,11 +16,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="PlanetCell" id="hzM-jv-6qp">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="PlanetCell" id="hzM-jv-6qp">
                                 <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hzM-jv-6qp" id="od1-R9-zMC">
-                                    <rect key="frame" x="0.0" y="0.0" width="351" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="383" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
@@ -62,7 +62,13 @@
                             <outlet property="delegate" destination="fOf-07-yz5" id="mOM-Y5-KT5"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Title" id="z8y-HK-wgv"/>
+                    <navigationItem key="navigationItem" title="Title" id="z8y-HK-wgv">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ppz-qx-VgD">
+                            <connections>
+                                <segue destination="9uT-d5-t9S" kind="presentation" id="hku-vb-Jd8"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SY8-cf-Qux" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -73,11 +79,11 @@
             <objects>
                 <viewController id="9uT-d5-t9S" customClass="AddMoonViewController" customModule="planets" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fQC-5S-ENZ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8AX-dl-str">
-                                <rect key="frame" x="8" y="76" width="398" height="34"/>
+                                <rect key="frame" x="8" y="64" width="398" height="34"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Moon Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="97H-td-lhy">
                                         <rect key="frame" x="0.0" y="0.0" width="136.5" height="34"/>
@@ -92,12 +98,33 @@
                                     </textField>
                                 </subviews>
                             </stackView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5XF-M9-I2i">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items>
+                                    <navigationItem title="Add New Moon" id="BFQ-Kc-Bdg">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="tY2-1p-7mx">
+                                            <connections>
+                                                <segue destination="phX-tm-IfZ" kind="unwind" identifier="cancel" unwindAction="unwindSegue:" id="TIO-bC-dO4"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="MUc-xM-sDE">
+                                            <connections>
+                                                <segue destination="phX-tm-IfZ" kind="unwind" identifier="save" unwindAction="unwindSegue:" id="dw6-Jy-kPW"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="5XF-M9-I2i" firstAttribute="leading" secondItem="swu-Lj-2cU" secondAttribute="leading" id="CQe-iG-4Ks"/>
+                            <constraint firstItem="5XF-M9-I2i" firstAttribute="top" secondItem="swu-Lj-2cU" secondAttribute="top" id="FWf-XP-dLd"/>
+                            <constraint firstItem="5XF-M9-I2i" firstAttribute="trailing" secondItem="swu-Lj-2cU" secondAttribute="trailing" id="Jda-lT-6M9"/>
                             <constraint firstItem="swu-Lj-2cU" firstAttribute="trailing" secondItem="8AX-dl-str" secondAttribute="trailing" constant="8" id="NtZ-Mp-iq7"/>
                             <constraint firstItem="8AX-dl-str" firstAttribute="leading" secondItem="swu-Lj-2cU" secondAttribute="leading" constant="8" id="aCL-aF-i4Z"/>
-                            <constraint firstItem="8AX-dl-str" firstAttribute="top" secondItem="swu-Lj-2cU" secondAttribute="top" constant="32" id="cpd-md-V4b"/>
+                            <constraint firstItem="8AX-dl-str" firstAttribute="top" secondItem="swu-Lj-2cU" secondAttribute="top" constant="64" id="vxp-jT-bsD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="swu-Lj-2cU"/>
                     </view>
@@ -106,6 +133,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yfG-xH-9Mv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="phX-tm-IfZ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2610.144927536232" y="95.758928571428569"/>
         </scene>

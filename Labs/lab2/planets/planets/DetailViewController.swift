@@ -10,9 +10,26 @@ import UIKit
 
 class DetailViewController: UITableViewController {
     
-    var planetsData = PlanetsDataController()
+    var planetsDataController = PlanetsDataController()
     var selectedPlanet = 0
-    var planetList = [String]()
+    var moonList = [String]()
+    
+    @IBAction func unwindSegue(_ segue: UIStoryboardSegue) {
+        if segue.identifier == "save" {
+            let source = segue.source as! AddMoonViewController
+            
+            if source.addedMoon.isEmpty == false {
+                planetsDataController.addMoon(planetIndex: selectedPlanet, newMoon: source.addedMoon, moonIndex: moonList.count)
+                
+                moonList.append(source.addedMoon)
+                
+                tableView.reloadData()
+            }
+        }
+        
+        
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +43,7 @@ class DetailViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        planetList = planetsData.getMoons(planetIndex: selectedPlanet)
+        moonList = planetsDataController.getMoons(planetIndex: selectedPlanet)
     }
 
     // MARK: - Table view data source
@@ -38,7 +55,7 @@ class DetailViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return planetList.count
+        return moonList.count
     }
 
     
@@ -47,7 +64,7 @@ class DetailViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MoonCell", for: indexPath)
 
         // Configure the cell...
-        cell.textLabel?.text = planetList[indexPath.row]
+        cell.textLabel?.text = moonList[indexPath.row]
 
         return cell
     }
@@ -63,9 +80,9 @@ class DetailViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            planetList.remove(at: indexPath.row)
+            moonList.remove(at: indexPath.row)
             
-            planetsData.deleteMoon(planetIndex: selectedPlanet, moonIndex: indexPath.row)
+            planetsDataController.deleteMoon(planetIndex: selectedPlanet, moonIndex: indexPath.row)
             
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
@@ -81,13 +98,13 @@ class DetailViewController: UITableViewController {
         let fromRow = fromIndexPath.row
         let toRow = to.row
         
-        let moonBeingMoved = planetList[fromRow]
+        let moonBeingMoved = moonList[fromRow]
         
-        planetList.swapAt(fromRow, toRow)
+        moonList.swapAt(fromRow, toRow)
         
-        planetsData.deleteMoon(planetIndex: selectedPlanet, moonIndex: fromRow)
+        planetsDataController.deleteMoon(planetIndex: selectedPlanet, moonIndex: fromRow)
         
-        planetsData.addMoon(planetIndex: selectedPlanet, newPlanet: moonBeingMoved, moonIndex: toRow)
+        planetsDataController.addMoon(planetIndex: selectedPlanet, newMoon: moonBeingMoved, moonIndex: toRow)
     }
 
 

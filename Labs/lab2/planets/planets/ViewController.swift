@@ -47,7 +47,7 @@ class ViewController: UITableViewController {
             if let selection = indexPath?.row {
                 detailViewController.selectedPlanet = selection
                 detailViewController.title = planetsList[selection]
-                detailViewController.planetsData = planetDataController
+                detailViewController.planetsDataController = planetDataController
             }
         }
     }
