@@ -41,7 +41,6 @@ class YourDataViewController: UITableViewController {
             catch {
                 print(error)
             }
-            print("disappearing Your Data")
         }
 
     // MARK: - Table view data source

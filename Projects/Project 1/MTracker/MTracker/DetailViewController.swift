@@ -36,7 +36,6 @@ class DetailViewController: UITableViewController {
         catch {
             print(error)
         }
-        print("disappearing")
     }
 
     // MARK: - Table view data source

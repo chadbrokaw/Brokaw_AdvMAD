@@ -14,6 +14,20 @@ class FirstViewController: UIViewController {
     @IBOutlet weak var proteinStackView: UIStackView!
     @IBOutlet weak var carbAmount: UILabel!
     @IBOutlet weak var fatAmount: UILabel!
+    @IBAction func calculate(_ sender: Any) {
+        do {
+            let macros = try macroData.calculateMacros()
+            proteinAmount.text = String(macros.protein)
+            carbAmount.text = String(macros.carbohydrates)
+            fatAmount.text = String(macros.fat)
+            
+        }
+        catch {
+            print(error)
+        }
+        
+        
+    }
     
     var fitnessData = FitnessDataController()
     var macroData = MacroDataController()
@@ -33,6 +47,16 @@ class FirstViewController: UIViewController {
             proteinAmount.text = String(macroData.allData[macroData.PROTEIN].data)
             carbAmount.text = String(macroData.allData[macroData.CARBOHYDRATE].data)
             fatAmount.text = String(macroData.allData[macroData.FAT].data)
+        }
+        catch {
+            print(error)
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        do {
+            try fitnessData.loadData()
+            try macroData.loadMacroData()
         }
         catch {
             print(error)

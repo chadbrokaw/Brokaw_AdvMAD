@@ -16,6 +16,23 @@ struct MacroDataModel: Codable {
 
 enum DataRetrievalErrors: Error {
     case WeightDataNotAvailable
+    case HeightDataNotAvailable
+    case BFPDataNotAvailable
+    case BirthdayNotAvailable
+    case ActivityLevelNotAvailable
+    case SomethingWentWrong
+}
+
+struct Macros {
+    var protein: Double
+    var fat: Double
+    var carbohydrates: Double
+    
+    init(protein: Double, fat: Double, carbohydrates: Double) {
+        self.protein = protein
+        self.fat = fat
+        self.carbohydrates = carbohydrates
+    }
 }
 
 class MacroDataController {
@@ -117,14 +134,27 @@ class MacroDataController {
         allData[macroCode].data = newData
     }
     
-    func calculateMacros() {
+    func calculateMacros() throws -> Macros {
         do {
-            let weight = try getWeight()
+            let kgWeight = try getWeight()
+            let height = try getHeight()
+            let BodyFatPercentage = try getBodyFatPercentage()
+            let age = try getAge()
+            let activityLevel = try getActivityLevel()
+            
+            let BMR_KatchMcArdle = calculateBMR_KatchMcArdle(BFP: BodyFatPercentage, kgWeight: kgWeight)
+            let BMR_MifflinStJeor = calculateBMR_MifflinStJeor(kgWeight: kgWeight, cmHeight: height, age: age)
+            
+            let BMR_Avg = (BMR_KatchMcArdle + BMR_MifflinStJeor) / 2
+            
+            let TDEE_Grams = BMR_Avg * activityLevel
+            
+            return Macros(protein: TDEE_Grams*0.4, fat: TDEE_Grams*0.3, carbohydrates: TDEE_Grams*0.3)
         }
         catch {
-            
+            print(error)
+            throw DataRetrievalErrors.SomethingWentWrong
         }
-        
     }
     
     func getWeight() throws -> Double {
@@ -140,6 +170,88 @@ class MacroDataController {
         else {
             throw DataRetrievalErrors.WeightDataNotAvailable
         }
+    }
+    
+    func getHeight() throws -> Double {
+        let heightArray = fitnessData.getDataForMetric(metricIndex: fitnessData.HEIGHT)
+        
+        if heightArray.count == 0 {
+            throw DataRetrievalErrors.HeightDataNotAvailable
+        }
+        
+        if let inchHeight = Double(heightArray[0].value) {
+            let cmHeight = inchHeight * 2.54
+            return cmHeight
+        }
+        else {
+            throw DataRetrievalErrors.HeightDataNotAvailable
+        }
+    }
+    
+    func getBodyFatPercentage() throws -> Double {
+        let BFPArray = fitnessData.getDataForMetric(metricIndex: fitnessData.BODY_FAT_PERCENTAGE)
+        
+        if BFPArray.count == 0 {
+            throw DataRetrievalErrors.BFPDataNotAvailable
+        }
+        
+        if let bfp = Double(BFPArray[0].value) {
+            return bfp
+        }
+        else {
+            throw DataRetrievalErrors.BFPDataNotAvailable
+        }
+    }
+    
+    func getActivityLevel() throws -> Double {
+        let activityLevelArray = fitnessData.getDataForMetric(metricIndex: fitnessData.ACTIVITY_LEVEL)
+        
+        if activityLevelArray.count == 0 {
+            throw DataRetrievalErrors.ActivityLevelNotAvailable
+        }
+        
+        if let activityLevel = Double(activityLevelArray[0].value) {
+            return activityLevel
+        }
+        else {
+            throw DataRetrievalErrors.ActivityLevelNotAvailable
+        }
+    }
+    
+    func getAge() throws -> Double {
+        let birthdayArray = fitnessData.getDataForMetric(metricIndex: fitnessData.BIRTHDAY)
+        if birthdayArray.count == 0 {
+            throw DataRetrievalErrors.BirthdayNotAvailable
+        }
+        
+        let birthday = birthdayArray[0].value
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd"
+        let date = df.date(from: birthday)
+        
+        if let dob = date {
+            let cal = Calendar.current
+            let age = cal.component(.year, from: Date()) -  cal.component(.year, from: dob)
+            return Double(age)
+        }
+        else {
+            throw DataRetrievalErrors.BirthdayNotAvailable
+        }
+    }
+    
+    
+    
+    func calculateBMR_KatchMcArdle(BFP: Double, kgWeight: Double) -> Double {
+        let LeanBodyMass = (kgWeight * (100 - BFP)) / 100
+        
+        let BMR = 370 + (21.6 * LeanBodyMass)
+        
+        return BMR
+    }
+    
+    func calculateBMR_MifflinStJeor(kgWeight: Double, cmHeight: Double, age: Double) -> Double {
+        let BMR = (10 * kgWeight) + (6.25 * cmHeight) - (5 * age) + 5
+        return BMR
     }
     
     
