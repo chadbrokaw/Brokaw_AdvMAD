@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>Data</key>
+		<array/>
+		<key>type</key>
+		<string>Activity Level</string>
+	</dict>
+	<dict>
+		<key>Data</key>
+		<array/>
+		<key>type</key>
+		<string>Birthday</string>
+	</dict>
+	<dict>
+		<key>Data</key>
+		<array/>
+		<key>type</key>
+		<string>Body Fat Percentage</string>
+	</dict>
+	<dict>
+		<key>Data</key>
+		<array/>
+		<key>type</key>
+		<string>Chest Size</string>
+	</dict>
+	<dict>
+		<key>Data</key>
+		<array/>
+		<key>type</key>
+		<string>Height</string>
+	</dict>
+	<dict>
+		<key>Data</key>
+		<array/>
+		<key>type</key>
+		<string>Weight</string>
+	</dict>
+	<dict>
+		<key>Data</key>
+		<array/>
+		<key>type</key>
+		<string>Waist Size</string>
+	</dict>
+</array>
+</plist>
