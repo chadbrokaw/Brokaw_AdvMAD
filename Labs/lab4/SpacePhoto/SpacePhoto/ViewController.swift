@@ -22,7 +22,7 @@ class ViewController: UIViewController {
             
             
             // thank you Isaac
-            let alert = UIAlertController(title: nil, message: "Searching with \(selectedDate)...", preferredStyle: .alert)
+            let alert = UIAlertController(title: nil, message: "Searching with \(searchDate)...", preferredStyle: .alert)
 
             let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 5, width: 50, height: 50))
             loadingIndicator.hidesWhenStopped = true
@@ -56,15 +56,27 @@ class ViewController: UIViewController {
         
         spacePhotoDataController.onDataUpdate = {[weak self] (data:[SpacePhoto]) in self?.searchDone(spaceData: data)}
         
-        datePicker.maximumDate = Date()
+//        datePicker.maximumDate = Date()
         datePicker.minimumDate = Date.init(timeIntervalSinceReferenceDate: 0)
     }
     
     func searchDone(spaceData: [SpacePhoto]) {
         dismiss(animated: true, completion: nil)
         
-        //set data property
         data = spaceData
+        
+        performSegue(withIdentifier: "searchResults", sender: nil)
+        
+        //set data property
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "searchResults" {
+            let detailVC = segue.destination as! DetailViewController
+            detailVC.title = "Space Photo"
+            detailVC.results = data
+        }
     }
 
 

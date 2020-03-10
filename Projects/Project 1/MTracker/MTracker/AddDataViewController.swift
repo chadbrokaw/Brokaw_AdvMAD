@@ -61,7 +61,6 @@ class AddDataViewController: UIViewController {
         // Pass the selected object to the new view controller.
         
         if segue.identifier == "save" {
-            print("Preparing")
             if selectedMetric != "Birthday" {
                 if textField.text?.isEmpty == false {
                     

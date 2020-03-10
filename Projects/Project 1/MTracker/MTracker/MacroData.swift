@@ -1,49 +1,38 @@
 //
-//  FitnessData.swift
+//  MacroData.swift
 //  MTracker
 //
-//  Created by Chad Brokaw on 3/7/20.
+//  Created by Chad Brokaw on 3/9/20.
 //  Copyright © 2020 Chad Brokaw. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-struct FitnessDataDetail: Codable {
-    var date: String
-    var value: String
+struct MacroDataModel: Codable {
+    var data: Int
+    var macro: String
 }
 
-struct FitnessDataModel: Codable {
-    var Data: [FitnessDataDetail]
-    var type: String
+enum DataRetrievalErrors: Error {
+    case WeightDataNotAvailable
 }
 
-enum DataError: Error {
-    case NoDataFile
-    case CouldNotDecode
-    case CouldNotEncode
-}
-
-class FitnessDataController {
-    var allData = [FitnessDataModel]()
-    let fileName = "Data"
-    let dataFileName = "WrittenData.plist"
+class MacroDataController {
+    var allData = [MacroDataModel]()
+    let fileName = "macros"
+    let dataFileName = "WrittenMacroData.plist"
+    let fitnessData = FitnessDataController()
     
-    let ACTIVITY_LEVEL = 0
-    let BIRTHDAY = 1
-    let BODY_FAT_PERCENTAGE = 2
-    let CHEST_SIZE = 3
-    let HEIGHT = 4
-    let WEIGHT = 5
-    let WAIST_SIZE = 6
+    let PROTEIN = 0
+    let CARBOHYDRATE = 1
+    let FAT = 2
     
-    init() {
-        let app = UIApplication.shared
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(FitnessDataController.writeData(_:)), name: UIApplication.willResignActiveNotification, object: app)
-    
-    }
+//    init() {
+//        let app = UIApplication.shared
+//
+//
+//    }
     
     func getDataFile(dataFile: String) -> URL {
         let dirPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
@@ -72,19 +61,22 @@ class FitnessDataController {
     
     func writeDataLocally() throws {
         let dataFileURL = getDataFile(dataFile: dataFileName)
-        //get an encoder
+        
         let encoder = PropertyListEncoder()
-        //set format — plist is a type of xml
+        
         encoder.outputFormat = .xml
+        
         do {
             let data = try encoder.encode(allData.self)
             try data.write(to: dataFileURL)
-        } catch {
+        }
+        catch {
             print(error)
+//            throw DataError.CouldNotEncode
         }
     }
     
-    func loadData() throws {
+    func loadMacroData() throws {
         let pathURL: URL?
         
         let dataFileURL = getDataFile(dataFile: dataFileName)
@@ -100,7 +92,7 @@ class FitnessDataController {
             let decoder = PropertyListDecoder()
             do {
                 let data = try Data(contentsOf: dataURL)
-                allData = try decoder.decode([FitnessDataModel].self, from: data)
+                allData = try decoder.decode([MacroDataModel].self, from: data)
             }
             catch {
                 throw DataError.CouldNotDecode
@@ -111,34 +103,45 @@ class FitnessDataController {
         }
     }
     
-    func getDataForMetric(metricIndex: Int) -> [FitnessDataDetail] {
-        return allData[metricIndex].Data
+    func loadFitnessData() {
+        do {
+            try fitnessData.loadData()
+        }
+        catch {
+            print("Couldn't get fitnessData")
+            print(error)
+        }
     }
     
-    func getMetrics() -> [String] {
-        var allMetrics = [String]()
-        
-        for item in allData {
-            allMetrics.append(item.type)
+    func updateData(macroCode: Int, newData: Int) {
+        allData[macroCode].data = newData
+    }
+    
+    func calculateMacros() {
+        do {
+            let weight = try getWeight()
+        }
+        catch {
+            
         }
         
-        return allMetrics
     }
     
-    func deleteDataForMetric(metricIndex: Int, dataIndex: Int) {
-        allData[metricIndex].Data.remove(at: dataIndex)
+    func getWeight() throws -> Double {
+        let weightArray = fitnessData.getDataForMetric(metricIndex: fitnessData.WEIGHT)
+        
+        if weightArray.count == 0 {
+            throw DataRetrievalErrors.WeightDataNotAvailable
+        }
+        if let intWeight = Double(weightArray[0].value) {
+            let kgWeight = intWeight / 2.205
+            return kgWeight
+        }
+        else {
+            throw DataRetrievalErrors.WeightDataNotAvailable
+        }
     }
     
-    func addDataForMetric(metricIndex: Int, newElement: FitnessDataDetail) {
-        allData[metricIndex].Data.insert(newElement, at: 0)
-//
-//        do {
-//            try writeDataLocally()
-//        }
-//        catch {
-//            print("Tried to write in local")
-//            print(error)
-//        }
-    }
+    
     
 }

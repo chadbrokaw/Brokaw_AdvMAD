@@ -21,6 +21,7 @@ class SpacePhotoDataController {
     
     func loadJSON(date: String) throws {
         let urlPath = "https://api.nasa.gov/planetary/apod?api_key=Kos0EhiYnP1KlmSF2pl39Wkdqfnqjb12CE1z4O30&date=\(date)"
+        print(urlPath)
         
         guard let url = URL(string: urlPath) else {
             throw JSONError.BadURL
@@ -48,7 +49,6 @@ class SpacePhotoDataController {
     }
     
     func parseJson(rawData: Data, date: String, url: String) {
-        print(rawData)
         do {
             let parsedData = try JSONDecoder().decode(SpacePhoto.self, from: rawData)
             spaceData.data.removeAll()

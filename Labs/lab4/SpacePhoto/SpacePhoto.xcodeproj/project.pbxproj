@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		401C68A024173E1100C1C5E1 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401C689F24173E1100C1C5E1 /* DetailViewController.swift */; };
 		405F1EBE240ED6F900A4403D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405F1EBD240ED6F900A4403D /* AppDelegate.swift */; };
 		405F1EC0240ED6F900A4403D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405F1EBF240ED6F900A4403D /* SceneDelegate.swift */; };
 		405F1EC2240ED6F900A4403D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405F1EC1240ED6F900A4403D /* ViewController.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		401C689F24173E1100C1C5E1 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		405F1EBA240ED6F800A4403D /* SpacePhoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpacePhoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		405F1EBD240ED6F900A4403D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		405F1EBF240ED6F900A4403D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 				405F1EBF240ED6F900A4403D /* SceneDelegate.swift */,
 				405F1EC1240ED6F900A4403D /* ViewController.swift */,
 				405F1EC3240ED6F900A4403D /* Main.storyboard */,
+				401C689F24173E1100C1C5E1 /* DetailViewController.swift */,
 				405F1ED1240EDAE200A4403D /* SpacePhotoData.swift */,
 				405F1ED3240EDBCA00A4403D /* SpacePhotoDataController.swift */,
 				405F1EC6240ED6FB00A4403D /* Assets.xcassets */,
@@ -147,6 +150,7 @@
 				405F1EC2240ED6F900A4403D /* ViewController.swift in Sources */,
 				405F1EBE240ED6F900A4403D /* AppDelegate.swift in Sources */,
 				405F1ED4240EDBCA00A4403D /* SpacePhotoDataController.swift in Sources */,
+				401C68A024173E1100C1C5E1 /* DetailViewController.swift in Sources */,
 				405F1EC0240ED6F900A4403D /* SceneDelegate.swift in Sources */,
 				405F1ED2240EDAE200A4403D /* SpacePhotoData.swift in Sources */,
 			);

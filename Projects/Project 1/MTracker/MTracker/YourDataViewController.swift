@@ -33,6 +33,16 @@ class YourDataViewController: UITableViewController {
         
         
     }
+    
+        override func viewWillDisappear(_ animated: Bool) {
+            do {
+                try fitnessData.writeDataLocally()
+            }
+            catch {
+                print(error)
+            }
+            print("disappearing Your Data")
+        }
 
     // MARK: - Table view data source
 

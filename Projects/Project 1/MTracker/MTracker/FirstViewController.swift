@@ -15,6 +15,9 @@ class FirstViewController: UIViewController {
     @IBOutlet weak var carbAmount: UILabel!
     @IBOutlet weak var fatAmount: UILabel!
     
+    var fitnessData = FitnessDataController()
+    var macroData = MacroDataController()
+    
     @IBOutlet weak var calculateButton: UIButton!
     
     override func viewDidLoad() {
@@ -22,6 +25,18 @@ class FirstViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         calculateButton.layer.cornerRadius = 4
+        
+        do {
+            try fitnessData.loadData()
+            try macroData.loadMacroData()
+            
+            proteinAmount.text = String(macroData.allData[macroData.PROTEIN].data)
+            carbAmount.text = String(macroData.allData[macroData.CARBOHYDRATE].data)
+            fatAmount.text = String(macroData.allData[macroData.FAT].data)
+        }
+        catch {
+            print(error)
+        }
     }
 }
 
