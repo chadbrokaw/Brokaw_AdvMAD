@@ -15,21 +15,10 @@ class FirstViewController: UIViewController {
     @IBOutlet weak var carbAmount: UILabel!
     @IBOutlet weak var fatAmount: UILabel!
     @IBAction func calculate(_ sender: Any) {
-        do {
-            let macros = try macroData.calculateMacros()
-            proteinAmount.text = String(macros.protein)
-            carbAmount.text = String(macros.carbohydrates)
-            fatAmount.text = String(macros.fat)
-            
-        }
-        catch {
-            print(error)
-        }
-        
-        
+        setMacros()
     }
     
-    var fitnessData = FitnessDataController()
+//    var fitnessData = FitnessDataController()
     var macroData = MacroDataController()
     
     @IBOutlet weak var calculateButton: UIButton!
@@ -41,12 +30,23 @@ class FirstViewController: UIViewController {
         calculateButton.layer.cornerRadius = 4
         
         do {
-            try fitnessData.loadData()
+            try FitnessDataController.shared.loadData()
             try macroData.loadMacroData()
+            setMacros()
+        }
+        catch {
+            print(error)
+        }
+    }
+    
+    func setMacros() {
+        do {
+            print("button pressed")
+            let macros = try macroData.calculateMacros()
+            proteinAmount.text = "\(String(Int(macros.protein)))g"
+            carbAmount.text = "\(String(Int(macros.carbohydrates)))g"
+            fatAmount.text = "\(String(Int(macros.fat)))g"
             
-            proteinAmount.text = String(macroData.allData[macroData.PROTEIN].data)
-            carbAmount.text = String(macroData.allData[macroData.CARBOHYDRATE].data)
-            fatAmount.text = String(macroData.allData[macroData.FAT].data)
         }
         catch {
             print(error)
@@ -55,7 +55,7 @@ class FirstViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         do {
-            try fitnessData.loadData()
+//            try FitnessDataController.shared.loadData()
             try macroData.loadMacroData()
         }
         catch {

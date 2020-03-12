@@ -10,7 +10,6 @@ import UIKit
 
 class YourDataViewController: UITableViewController {
     
-    var fitnessData = FitnessDataController()
     var metricList = [String]()
 
     override func viewDidLoad() {
@@ -23,20 +22,16 @@ class YourDataViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        do {
-            try fitnessData.loadData()
-            metricList = fitnessData.getMetrics()
-        }
-        catch {
-            print(error)
-        }
+        metricList = FitnessDataController.shared.getMetrics()
+
+
         
         
     }
     
         override func viewWillDisappear(_ animated: Bool) {
             do {
-                try fitnessData.writeDataLocally()
+                try FitnessDataController.shared.writeDataLocally()
             }
             catch {
                 print(error)
@@ -117,7 +112,7 @@ class YourDataViewController: UITableViewController {
                 detailVC.selectedMetric = selection
                 detailVC.title = metricList[selection]
                 detailVC.selectedMetricTitle = metricList[selection]
-                detailVC.fitnessData = fitnessData
+//                detailVC.fitnessData = fitnessData
             }
         }
     }

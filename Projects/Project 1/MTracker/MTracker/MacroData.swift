@@ -39,17 +39,16 @@ class MacroDataController {
     var allData = [MacroDataModel]()
     let fileName = "macros"
     let dataFileName = "WrittenMacroData.plist"
-    let fitnessData = FitnessDataController()
     
     let PROTEIN = 0
     let CARBOHYDRATE = 1
     let FAT = 2
     
-//    init() {
-//        let app = UIApplication.shared
-//
-//
-//    }
+    init() {
+        let app = UIApplication.shared
+
+        NotificationCenter.default.addObserver(self, selector: #selector(MacroDataController.writeData(_:)), name: UIApplication.willResignActiveNotification, object: app)
+    }
     
     func getDataFile(dataFile: String) -> URL {
         let dirPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
@@ -60,6 +59,7 @@ class MacroDataController {
     }
     
     @objc func writeData(_ notification: NSNotification) throws {
+        print("Writing")
         let dataFileURL = getDataFile(dataFile: dataFileName)
         
         let encoder = PropertyListEncoder()
@@ -89,7 +89,6 @@ class MacroDataController {
         }
         catch {
             print(error)
-//            throw DataError.CouldNotEncode
         }
     }
     
@@ -120,27 +119,27 @@ class MacroDataController {
         }
     }
     
-    func loadFitnessData() {
-        do {
-            try fitnessData.loadData()
-        }
-        catch {
-            print("Couldn't get fitnessData")
-            print(error)
-        }
-    }
-    
     func updateData(macroCode: Int, newData: Int) {
         allData[macroCode].data = newData
     }
     
     func calculateMacros() throws -> Macros {
+        print("calculating")
         do {
             let kgWeight = try getWeight()
             let height = try getHeight()
             let BodyFatPercentage = try getBodyFatPercentage()
             let age = try getAge()
             let activityLevel = try getActivityLevel()
+            
+            print("""
+                height: \(height)
+                weight: \(kgWeight)
+                Body Fat PErcentage: \(BodyFatPercentage)
+                Age: \(age)
+                ActivityLevel: \(activityLevel)
+            """
+            )
             
             let BMR_KatchMcArdle = calculateBMR_KatchMcArdle(BFP: BodyFatPercentage, kgWeight: kgWeight)
             let BMR_MifflinStJeor = calculateBMR_MifflinStJeor(kgWeight: kgWeight, cmHeight: height, age: age)
@@ -158,7 +157,7 @@ class MacroDataController {
     }
     
     func getWeight() throws -> Double {
-        let weightArray = fitnessData.getDataForMetric(metricIndex: fitnessData.WEIGHT)
+        let weightArray = FitnessDataController.shared.getDataForMetric(metricIndex: FitnessDataController.shared.WEIGHT)
         
         if weightArray.count == 0 {
             throw DataRetrievalErrors.WeightDataNotAvailable
@@ -173,7 +172,7 @@ class MacroDataController {
     }
     
     func getHeight() throws -> Double {
-        let heightArray = fitnessData.getDataForMetric(metricIndex: fitnessData.HEIGHT)
+        let heightArray = FitnessDataController.shared.getDataForMetric(metricIndex: FitnessDataController.shared.HEIGHT)
         
         if heightArray.count == 0 {
             throw DataRetrievalErrors.HeightDataNotAvailable
@@ -189,7 +188,7 @@ class MacroDataController {
     }
     
     func getBodyFatPercentage() throws -> Double {
-        let BFPArray = fitnessData.getDataForMetric(metricIndex: fitnessData.BODY_FAT_PERCENTAGE)
+        let BFPArray = FitnessDataController.shared.getDataForMetric(metricIndex: FitnessDataController.shared.BODY_FAT_PERCENTAGE)
         
         if BFPArray.count == 0 {
             throw DataRetrievalErrors.BFPDataNotAvailable
@@ -204,7 +203,7 @@ class MacroDataController {
     }
     
     func getActivityLevel() throws -> Double {
-        let activityLevelArray = fitnessData.getDataForMetric(metricIndex: fitnessData.ACTIVITY_LEVEL)
+        let activityLevelArray = FitnessDataController.shared.getDataForMetric(metricIndex: FitnessDataController.shared.ACTIVITY_LEVEL)
         
         if activityLevelArray.count == 0 {
             throw DataRetrievalErrors.ActivityLevelNotAvailable
@@ -219,7 +218,7 @@ class MacroDataController {
     }
     
     func getAge() throws -> Double {
-        let birthdayArray = fitnessData.getDataForMetric(metricIndex: fitnessData.BIRTHDAY)
+        let birthdayArray = FitnessDataController.shared.getDataForMetric(metricIndex: FitnessDataController.shared.BIRTHDAY)
         if birthdayArray.count == 0 {
             throw DataRetrievalErrors.BirthdayNotAvailable
         }

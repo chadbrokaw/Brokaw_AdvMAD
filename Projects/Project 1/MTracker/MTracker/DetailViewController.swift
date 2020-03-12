@@ -10,7 +10,7 @@ import UIKit
 
 class DetailViewController: UITableViewController {
     
-    var fitnessData = FitnessDataController()
+//    var fitnessData = FitnessDataController()
     var selectedMetric = 0
     var selectedMetricTitle = String()
     var dataList = [FitnessDataDetail]()
@@ -26,12 +26,12 @@ class DetailViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        dataList = fitnessData.getDataForMetric(metricIndex: selectedMetric)
+        dataList = FitnessDataController.shared.getDataForMetric(metricIndex: selectedMetric)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         do {
-            try fitnessData.writeDataLocally()
+            try FitnessDataController.shared.writeDataLocally()
         }
         catch {
             print(error)
@@ -74,7 +74,7 @@ class DetailViewController: UITableViewController {
             // Delete the row from the data source
             dataList.remove(at: indexPath.row)
             
-            fitnessData.deleteDataForMetric(metricIndex: selectedMetric, dataIndex: indexPath.row)
+            FitnessDataController.shared.deleteDataForMetric(metricIndex: selectedMetric, dataIndex: indexPath.row)
             
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
@@ -88,7 +88,7 @@ class DetailViewController: UITableViewController {
             
             dataList.insert(source.preparedData, at: 0)
             
-            fitnessData.addDataForMetric(metricIndex: selectedMetric, newElement: source.preparedData)
+            FitnessDataController.shared.addDataForMetric(metricIndex: selectedMetric, newElement: source.preparedData)
             
             tableView.reloadData()
         }

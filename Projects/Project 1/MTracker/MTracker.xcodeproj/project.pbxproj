@@ -17,10 +17,10 @@
 		401C689024143A8100C1C5E1 /* YourDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401C688F24143A8100C1C5E1 /* YourDataViewController.swift */; };
 		401C6892241449EC00C1C5E1 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401C6891241449EC00C1C5E1 /* DetailViewController.swift */; };
 		401C689424144D2100C1C5E1 /* Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 401C689324144D2100C1C5E1 /* Data.plist */; };
-		401C689624144F3E00C1C5E1 /* macros.plist in Resources */ = {isa = PBXBuildFile; fileRef = 401C689524144F3E00C1C5E1 /* macros.plist */; };
 		401C68982414585C00C1C5E1 /* FitnessData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401C68972414585C00C1C5E1 /* FitnessData.swift */; };
 		401C689A24154FAD00C1C5E1 /* AddDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401C689924154FAD00C1C5E1 /* AddDataViewController.swift */; };
 		401C689C2417159D00C1C5E1 /* MacroData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401C689B2417159D00C1C5E1 /* MacroData.swift */; };
+		401C68A42419B4CA00C1C5E1 /* macros.plist in Resources */ = {isa = PBXBuildFile; fileRef = 401C68A32419B4CA00C1C5E1 /* macros.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,10 +36,10 @@
 		401C688F24143A8100C1C5E1 /* YourDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourDataViewController.swift; sourceTree = "<group>"; };
 		401C6891241449EC00C1C5E1 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		401C689324144D2100C1C5E1 /* Data.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Data.plist; sourceTree = "<group>"; };
-		401C689524144F3E00C1C5E1 /* macros.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = macros.plist; sourceTree = "<group>"; };
 		401C68972414585C00C1C5E1 /* FitnessData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitnessData.swift; sourceTree = "<group>"; };
 		401C689924154FAD00C1C5E1 /* AddDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDataViewController.swift; sourceTree = "<group>"; };
 		401C689B2417159D00C1C5E1 /* MacroData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacroData.swift; sourceTree = "<group>"; };
+		401C68A32419B4CA00C1C5E1 /* macros.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = macros.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,10 +83,10 @@
 				401C68972414585C00C1C5E1 /* FitnessData.swift */,
 				401C689B2417159D00C1C5E1 /* MacroData.swift */,
 				401C687F24115F7500C1C5E1 /* SecondViewController.swift */,
-				401C689524144F3E00C1C5E1 /* macros.plist */,
 				401C688424115F7700C1C5E1 /* Assets.xcassets */,
 				401C688624115F7700C1C5E1 /* LaunchScreen.storyboard */,
 				401C688924115F7700C1C5E1 /* Info.plist */,
+				401C68A32419B4CA00C1C5E1 /* macros.plist */,
 			);
 			path = MTracker;
 			sourceTree = "<group>";
@@ -152,7 +152,7 @@
 				401C688824115F7700C1C5E1 /* LaunchScreen.storyboard in Resources */,
 				401C688524115F7700C1C5E1 /* Assets.xcassets in Resources */,
 				401C689424144D2100C1C5E1 /* Data.plist in Resources */,
-				401C689624144F3E00C1C5E1 /* macros.plist in Resources */,
+				401C68A42419B4CA00C1C5E1 /* macros.plist in Resources */,
 				401C688324115F7500C1C5E1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

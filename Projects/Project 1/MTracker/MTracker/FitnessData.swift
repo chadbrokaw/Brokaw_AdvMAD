@@ -38,7 +38,9 @@ class FitnessDataController {
     let WEIGHT = 5
     let WAIST_SIZE = 6
     
-    init() {
+    static let shared = FitnessDataController()
+    
+    private init() {
         let app = UIApplication.shared
         
         NotificationCenter.default.addObserver(self, selector: #selector(FitnessDataController.writeData(_:)), name: UIApplication.willResignActiveNotification, object: app)
@@ -72,9 +74,9 @@ class FitnessDataController {
     
     func writeDataLocally() throws {
         let dataFileURL = getDataFile(dataFile: dataFileName)
-        //get an encoder
+
         let encoder = PropertyListEncoder()
-        //set format — plist is a type of xml
+
         encoder.outputFormat = .xml
         do {
             let data = try encoder.encode(allData.self)
@@ -131,14 +133,6 @@ class FitnessDataController {
     
     func addDataForMetric(metricIndex: Int, newElement: FitnessDataDetail) {
         allData[metricIndex].Data.insert(newElement, at: 0)
-//
-//        do {
-//            try writeDataLocally()
-//        }
-//        catch {
-//            print("Tried to write in local")
-//            print(error)
-//        }
     }
     
 }
