@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.cardview.widget.CardView
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -29,7 +30,8 @@ class AddDataFragment : Fragment() {
 
         weightCard.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
-                navController.navigate(R.id.action_navigation_AddData_to_addSpecificData)
+                var bundle = bundleOf("Id" to "Weight")
+                navController.navigate(R.id.action_navigation_AddData_to_addSpecificData, bundle)
             }
         })
 
