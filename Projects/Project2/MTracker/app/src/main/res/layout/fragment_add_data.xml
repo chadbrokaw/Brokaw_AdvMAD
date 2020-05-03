@@ -13,7 +13,7 @@
         android:layout_marginBottom="45dp">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
         android:orientation="vertical"
@@ -46,7 +46,8 @@
             android:layout_width="fill_parent"
             android:layout_height="100dp"
             android:layout_gravity="center"
-            android:layout_margin="20dp">
+            android:layout_margin="20dp"
+            app:cardCornerRadius="5dp">
 
             <TextView
                 android:id="@+id/HeightText"
@@ -65,7 +66,8 @@
             android:layout_width="fill_parent"
             android:layout_height="100dp"
             android:layout_gravity="center"
-            android:layout_margin="20dp">
+            android:layout_margin="20dp"
+            app:cardCornerRadius="5dp">
 
             <TextView
                 android:id="@+id/ActivityLevel"
@@ -85,6 +87,7 @@
             android:layout_height="100dp"
             android:layout_gravity="center"
             android:layout_margin="20dp"
+            app:cardCornerRadius="5dp"
             >
 
             <TextView
@@ -104,7 +107,8 @@
             android:layout_width="fill_parent"
             android:layout_height="100dp"
             android:layout_gravity="center"
-            android:layout_margin="20dp">
+            android:layout_margin="20dp"
+            app:cardCornerRadius="5dp">
 
             <TextView
                 android:id="@+id/WaistSize"
@@ -123,7 +127,8 @@
             android:layout_width="fill_parent"
             android:layout_height="100dp"
             android:layout_gravity="center"
-            android:layout_margin="20dp">
+            android:layout_margin="20dp"
+            app:cardCornerRadius="5dp">
 
             <TextView
                 android:id="@+id/ChestSize"
@@ -142,7 +147,8 @@
             android:layout_width="fill_parent"
             android:layout_height="100dp"
             android:layout_gravity="center"
-            android:layout_margin="20dp">
+            android:layout_margin="20dp"
+            app:cardCornerRadius="5dp">
 
             <TextView
                 android:id="@+id/Birthday"

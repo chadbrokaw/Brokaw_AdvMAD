@@ -3,4 +3,7 @@
     <color name="colorPrimary">#63C7B2</color>
     <color name="colorPrimaryDark">#263D42</color>
     <color name="colorAccent">#80CED7</color>
+    <color name="Gainsboro">#CCDBDC</color>
+    <color name="White">#FFFFFF</color>
+    <color name="ChineseViolet">#8E6C88</color>
 </resources>

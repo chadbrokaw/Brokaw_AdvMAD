@@ -5,5 +5,7 @@
     <string name="title_Add_specific_data">Add Specific Data</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="AddSpecificData_AddData">Hello blank fragment</string>
+    <string name="AddSpecificData_DataHint">Please enter your data in the field above.</string>
+    <string name="AddSpecificData_SaveButton">Save</string>
 </resources>
