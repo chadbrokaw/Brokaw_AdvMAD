@@ -8,26 +8,31 @@ import android.view.ViewGroup
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import com.chad.mtracker.R
 
 class AddDataFragment : Fragment() {
 
-//    private lateinit var addDataViewModel: AddSpecificDataViewModel
+    private lateinit var navController: NavController
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-//        addDataViewModel =
-//                ViewModelProvider(this).get(AddSpecificDataViewModel::class.java)
+        navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment)
+
         val root = inflater.inflate(R.layout.fragment_add_data, container, false)
-        val weightCard: CardView = root.findViewById(R.id.weightCard)
-        weightCard.setOnClickListener{ Log.e("TEST", "Chad") }
-//        val textView: TextView = root.findViewById(R.id.text_add_data)
-//        addDataViewModel.text.observe(viewLifecycleOwner, Observer {
-//            textView.text = it
-//        })
+
+        val weightCard = root.findViewById<CardView>(R.id.weightCard)
+
+        weightCard.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                navController.navigate(R.id.action_navigation_AddData_to_addSpecificData)
+            }
+        })
+
         return root
     }
 }

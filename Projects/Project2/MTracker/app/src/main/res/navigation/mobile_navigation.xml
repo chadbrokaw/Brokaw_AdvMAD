@@ -9,12 +9,22 @@
         android:id="@+id/navigation_macros"
         android:name="com.chad.mtracker.ui.macros.MacrosFragment"
         android:label="@string/title_Macros"
-        tools:layout="@layout/fragment_macros" />
+        tools:layout="@layout/fragment_macros" >
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_AddData"
         android:name="com.chad.mtracker.ui.addData.AddDataFragment"
         android:label="@string/title_AddData"
-        tools:layout="@layout/fragment_add_data" />
+        tools:layout="@layout/fragment_add_data" >
+        <action
+            android:id="@+id/action_navigation_AddData_to_addSpecificData"
+            app:destination="@id/addSpecificData" />
+    </fragment>
+    <fragment
+        android:id="@+id/addSpecificData"
+        android:name="com.chad.mtracker.AddSpecificData"
+        android:label="@string/title_Add_specific_data"
+        tools:layout="@layout/fragment_add_specific_data" />
 
 </navigation>
