@@ -23,8 +23,12 @@
     </fragment>
     <fragment
         android:id="@+id/addSpecificData"
-        android:name="com.chad.mtracker.AddSpecificData"
+        android:name="com.chad.mtracker.ui.addSpecificData.AddSpecificData"
         android:label="@string/title_Add_specific_data"
-        tools:layout="@layout/fragment_add_specific_data" />
+        tools:layout="@layout/fragment_add_specific_data" >
+        <argument
+            android:name="dataType"
+            app:argType="com.chad.mtracker.ui.addSpecificData.DataTypes" />
+    </fragment>
 
 </navigation>

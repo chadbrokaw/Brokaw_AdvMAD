@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.chad.mtracker.R
+import com.chad.mtracker.ui.addSpecificData.DataTypes
 
 class AddDataFragment : Fragment() {
 
@@ -26,15 +27,20 @@ class AddDataFragment : Fragment() {
 
         val root = inflater.inflate(R.layout.fragment_add_data, container, false)
 
-        val weightCard = root.findViewById<CardView>(R.id.weightCard)
-
-        weightCard.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                var bundle = bundleOf("Id" to "Weight")
-                navController.navigate(R.id.action_navigation_AddData_to_addSpecificData, bundle)
-            }
-        })
+        root.findViewById<CardView>(R.id.weightCard).setOnClickListener { navigateAway(DataTypes.WEIGHT) }
+        root.findViewById<CardView>(R.id.heightCard).setOnClickListener { navigateAway(DataTypes.HEIGHT) }
+        root.findViewById<CardView>(R.id.activityLevelCard).setOnClickListener { navigateAway(DataTypes.ACTIVITY_LEVEL) }
+        root.findViewById<CardView>(R.id.bfpCard).setOnClickListener { navigateAway(DataTypes.BODY_FAT_PERCENTAGE) }
+        root.findViewById<CardView>(R.id.waistCard).setOnClickListener { navigateAway(DataTypes.WAIST_SIZE) }
+        root.findViewById<CardView>(R.id.chestCard).setOnClickListener { navigateAway(DataTypes.CHEST_SIZE) }
+        root.findViewById<CardView>(R.id.birthdayCard).setOnClickListener { navigateAway(DataTypes.BIRTHDAY) }
 
         return root
+    }
+
+    private fun navigateAway(bundleID: DataTypes) {
+        val bundle = Bundle()
+        bundle.putString("Id", bundleID.value)
+        navController.navigate(R.id.action_navigation_AddData_to_addSpecificData, bundle)
     }
 }
