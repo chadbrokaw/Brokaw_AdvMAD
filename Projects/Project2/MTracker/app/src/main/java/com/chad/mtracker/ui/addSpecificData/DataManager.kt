@@ -16,7 +16,7 @@ class DataManager {
             DataTypes.BODY_FAT_PERCENTAGE.value -> DataTypeInformation(title = "Body Fat Percentage", inputType = "number", specialInstructions = "Please enter your body fat percentage out of 100", firestoreID = "body_fat_percentage" )
             DataTypes.WAIST_SIZE.value -> DataTypeInformation(title = "Waist Size", inputType = "number", specialInstructions = "Please enter your waist size in inches", firestoreID = "waist_size" )
             DataTypes.CHEST_SIZE.value -> DataTypeInformation(title = "Chest Size", inputType = "number", specialInstructions = "Please enter your chest size in inches", firestoreID = "chest_size" )
-            DataTypes.BIRTHDAY.value -> DataTypeInformation(title = "Birthday", inputType = "number", specialInstructions = "Please enter your age as a whole number", firestoreID = "birthday" )
+            DataTypes.BIRTHDAY.value -> DataTypeInformation(title = "Age", inputType = "number", specialInstructions = "Please enter your age as a whole number", firestoreID = "birthday" )
             else -> DataTypeInformation(title = "Unknown", inputType = "number", specialInstructions = "Yikes", firestoreID = "big_yikes" )
         }
     }
