@@ -44,7 +44,7 @@ class AddSpecificData : Fragment() {
     private fun setData(dataID: String) {
 
 
-        val value = root.findViewById<EditText>(R.id.dataEntry).text.toString().toInt()
+        val value = root.findViewById<EditText>(R.id.dataEntry).text.toString().toDouble()
 
         val db = Firebase.firestore
 

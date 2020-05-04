@@ -13,6 +13,7 @@ import androidx.navigation.ui.setupWithNavController
 class MainActivity : AppCompatActivity(), FragmentManager.OnBackStackChangedListener {
 
     private lateinit var navController: NavController
+    var macrosCalculated: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

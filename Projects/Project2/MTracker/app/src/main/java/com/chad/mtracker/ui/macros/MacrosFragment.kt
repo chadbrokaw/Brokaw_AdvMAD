@@ -5,12 +5,16 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.chad.mtracker.MainActivity
 import com.chad.mtracker.R
 import com.chad.mtracker.data.MacroData
 import com.chad.mtracker.data.NutritionData
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
@@ -20,7 +24,6 @@ class MacrosFragment : Fragment() {
     private lateinit var macrosViewModel: MacrosViewModel
     private lateinit var nutritionData: NutritionData
     private lateinit var macroData: MacroData
-    private var loading: Boolean = false
     private lateinit var root: View
 
     override fun onCreateView(
@@ -31,11 +34,16 @@ class MacrosFragment : Fragment() {
         macrosViewModel = ViewModelProvider(this).get(MacrosViewModel::class.java)
         root = inflater.inflate(R.layout.fragment_macros, container, false)
 
-        setLoadingData()
-
-        getData()
+        root.findViewById<Button>(R.id.refreshButton).setOnClickListener { getData() }
+        getDataInitially()
 
         return root
+    }
+
+    private fun setStartState() {
+        root.findViewById<TextView>(R.id.proteinText).text = "Add Data"
+        root.findViewById<TextView>(R.id.fatText).text = "Add Data"
+        root.findViewById<TextView>(R.id.carbText).text = "Add Data"
     }
 
     private fun setLoadingData() {
@@ -50,8 +58,40 @@ class MacrosFragment : Fragment() {
         root.findViewById<TextView>(R.id.carbText).text = "${macroData.carbs.toInt()}g"
     }
 
+    private fun determineWhatToDo() {
+        if(nutritionData.macro_carb == -1 || nutritionData.macro_fat == -1 || nutritionData.macro_protein == -1) {
+            setStartState()
+        }
+        else {
+            macroData = MacroData(nutritionData.macro_protein ?: -404, nutritionData.macro_fat ?: -404, nutritionData.macro_carb ?: -404)
+            setData()
+        }
+    }
+
+    private fun getDataInitially() {
+        setLoadingData()
+
+        val db = Firebase.firestore
+
+        db.collection("dataTracking")
+            .document("RPoNiZKWDRvm9tQZ69tW")
+            .get()
+            .addOnSuccessListener { document ->
+                val tempNutritionData = document.toObject<NutritionData>()
+
+                if (tempNutritionData != null) {
+                    nutritionData = tempNutritionData
+                    determineWhatToDo()
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.w("MTracker", "Error getting documents.", exception)
+            }
+    }
+
     private fun getData() {
-        loading = true
+        setLoadingData()
+
         val db = Firebase.firestore
 
         db.collection("dataTracking")
@@ -68,7 +108,21 @@ class MacrosFragment : Fragment() {
             .addOnFailureListener { exception ->
                 Log.w("MTracker", "Error getting documents.", exception)
             }
-        loading = false
+    }
+
+    private fun writeData() {
+        val db = Firebase.firestore
+
+        val data = hashMapOf<String, Any>(
+            "macro_protein" to macroData.protein,
+            "macro_fat" to macroData.fat,
+            "macro_carb" to macroData.carbs
+        )
+
+        db.collection("dataTracking").document("RPoNiZKWDRvm9tQZ69tW")
+            .update(data)
+            .addOnSuccessListener { Log.d("Mtracker", "DocumentSnapshot successfully updated!") }
+            .addOnFailureListener { e -> Log.e("Mtracker", "Error updating document", e) }
     }
 
     private fun calculateData() {
@@ -78,12 +132,20 @@ class MacrosFragment : Fragment() {
         val age = getAge()
         val activityLevel = getActivityLevel()
 
+        if (kgWeight == -9.0 || cmHeight == -9.0 || bodyFatPercentage == -9.0 || age == -9.0 || activityLevel == -9.0) {
+            setStartState()
+            return
+        }
+
         val BMR_KatchMcArdle = calculateBMRKatchMcArdle(bodyFatPercentage, kgWeight)
         val BMR_MifflinStJeor = calculateBMRMifflinStJeor(kgWeight, cmHeight, age)
 
-        val TDEE_Grams = (BMR_KatchMcArdle + BMR_MifflinStJeor) / 2
+        val BMR_Avg = (BMR_KatchMcArdle + BMR_MifflinStJeor) / 2
+        val TDEE_Grams = BMR_Avg * activityLevel
 
-        macroData = MacroData(TDEE_Grams * 0.4, TDEE_Grams * 0.3, TDEE_Grams * 0.4)
+        macroData = MacroData((TDEE_Grams * 0.4).toInt(), (TDEE_Grams * 0.3).toInt(), (TDEE_Grams * 0.4).toInt())
+
+        writeData()
 
         setData()
     }
@@ -154,6 +216,8 @@ class MacrosFragment : Fragment() {
             return -9.0
         }
 
-        return activityLevelArray[activityLevelArrayLength - 1].toDouble()
+        val mostRecentActivityLevel = activityLevelArray[activityLevelArrayLength - 1].toDouble() / 10
+
+        return 1 + mostRecentActivityLevel
     }
 }

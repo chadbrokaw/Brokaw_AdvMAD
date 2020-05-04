@@ -25,7 +25,7 @@ class DataManager {
             DataTypes.ACTIVITY_LEVEL.value -> DataTypeInformation(
                 title = "Activity Level",
                 inputType = "number",
-                specialInstructions = "Please enter your activity as a decimal between 1 and 2",
+                specialInstructions = "Please enter your activity as a value between 1 and 2",
                 firestoreID = "activity_level"
             )
             DataTypes.BODY_FAT_PERCENTAGE.value -> DataTypeInformation(
