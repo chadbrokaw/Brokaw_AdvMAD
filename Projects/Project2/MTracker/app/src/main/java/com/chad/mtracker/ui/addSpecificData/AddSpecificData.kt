@@ -46,7 +46,7 @@ class AddSpecificData : Fragment() {
         return root
     }
 
-    private fun getData(firestorID: String) {
+    private fun getData(firestoreID: String) {
         val db = Firebase.firestore
 
         db.collection("dataTracking")
@@ -57,7 +57,7 @@ class AddSpecificData : Fragment() {
 
                 if (tempNutritionData != null) {
                     nutritionData = tempNutritionData
-                    determineCurrentToSet(firestorID)
+                    determineCurrentToSet(firestoreID)
                 }
             }
             .addOnFailureListener { exception ->
@@ -83,7 +83,7 @@ class AddSpecificData : Fragment() {
             return
         }
         if (arr.isEmpty()) {
-            root.findViewById<TextView>(R.id.currentEntry).text = "No current value set"
+            root.findViewById<TextView>(R.id.currentEntry).text = getString(R.string.Class_AddSpecifcData_NoCurrentValue)
             return
         }
 

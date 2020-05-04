@@ -8,4 +8,17 @@
     <string name="AddSpecificData_AddData">Hello blank fragment</string>
     <string name="AddSpecificData_DataHint">Please enter your data in the field above.</string>
     <string name="AddSpecificData_SaveButton">Save</string>
+    <string name="AddData_Weight">Weight</string>
+    <string name="AddData_Height">Height</string>
+    <string name="AddData_Activity_Level">Activity Level</string>
+    <string name="AddData_BodyFatPercentage">Body Fat Percentage</string>
+    <string name="AddData_WaistSize">Waist Size</string>
+    <string name="AddData_ChestSize">Chest Size</string>
+    <string name="AddData_Birthday">Birthday</string>
+    <string name="MacroDefaultVal">300g</string>
+    <string name="Macro_Protein">Protein</string>
+    <string name="Macro_Fat">Fat</string>
+    <string name="Macro_Carbohydrates">Carbohydrates</string>
+    <string name="Macro_RefreshButton">Refresh</string>
+    <string name="Class_AddSpecifcData_NoCurrentValue">No current value set</string>
 </resources>
