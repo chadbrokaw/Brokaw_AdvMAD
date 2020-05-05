@@ -21,7 +21,6 @@ import com.google.firebase.ktx.Firebase
 
 class MacrosFragment : Fragment() {
 
-    private lateinit var macrosViewModel: MacrosViewModel
     private lateinit var nutritionData: NutritionData
     private lateinit var macroData: MacroData
     private lateinit var root: View
@@ -31,7 +30,7 @@ class MacrosFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        macrosViewModel = ViewModelProvider(this).get(MacrosViewModel::class.java)
+
         root = inflater.inflate(R.layout.fragment_macros, container, false)
 
         root.findViewById<Button>(R.id.refreshButton).setOnClickListener { getData() }
