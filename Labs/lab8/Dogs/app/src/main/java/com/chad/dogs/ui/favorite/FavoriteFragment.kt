@@ -1,4 +1,4 @@
-package com.chad.dogs.ui.dashboard
+package com.chad.dogs.ui.favorite
 
 import android.os.Bundle
 import android.util.Log
@@ -8,16 +8,13 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.chad.dogs.R
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 
-class DashboardFragment : Fragment() {
+class FavoriteFragment : Fragment() {
 
-    private lateinit var dashboardViewModel: DashboardViewModel
     private lateinit var dogData: DogData
     private lateinit var root: View
 
@@ -28,9 +25,8 @@ class DashboardFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        dashboardViewModel =
-                ViewModelProviders.of(this).get(DashboardViewModel::class.java)
-        root = inflater.inflate(R.layout.fragment_dashboard, container, false)
+
+        root = inflater.inflate(R.layout.fragment_favorites, container, false)
 
         root.findViewById<Button>(R.id.DeleteFavorite).setOnClickListener { delete() }
 

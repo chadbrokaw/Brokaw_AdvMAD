@@ -1,4 +1,4 @@
-package com.chad.dogs.ui.home
+package com.chad.dogs.ui.addData
 
 import android.os.Bundle
 import android.util.Log
@@ -7,17 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.chad.dogs.R
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class HomeFragment : Fragment() {
+class AddDataFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
 
     private lateinit var root: View
 
@@ -26,9 +22,7 @@ class HomeFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        homeViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel::class.java)
-        root = inflater.inflate(R.layout.fragment_home, container, false)
+        root = inflater.inflate(R.layout.fragment_add_data, container, false)
 
         root.findViewById<Button>(R.id.saveButton).setOnClickListener { sendData() }
 

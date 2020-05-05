@@ -1,4 +1,4 @@
-package com.chad.dogs.ui.dashboard
+package com.chad.dogs.ui.favorite
 
 data class DogData (
     val DogType: String? = "",
