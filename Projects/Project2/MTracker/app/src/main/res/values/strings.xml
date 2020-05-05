@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Macros</string>
+    <string name="app_name">MTracker</string>
     <string name="title_Macros">Macros</string>
     <string name="title_AddData">Add Data</string>
     <string name="title_Add_specific_data">Add Specific Data</string>
