@@ -2,4 +2,12 @@
     <string name="app_name">Dogs</string>
     <string name="title_Add_Dog">Add Dog</string>
     <string name="title_FavDog">Favorite Dog</string>
+    <string name="dog_name">Dog Name</string>
+    <string name="add_dog">Add Dog</string>
+    <string name="fluffiness">Fluffiness</string>
+    <string name="save">Save</string>
+    <string name="current_favorite_dog">Current Favorite Dog</string>
+    <string name="favorite_dog_type">Favorite Dog Type:</string>
+    <string name="favorite_dog_fluffiness">Favorite Dog Fluffiness:</string>
+    <string name="delete">Delete</string>
 </resources>
